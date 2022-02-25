@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js每日一题：如何获取手机的电池信息（电量，充电状态）(2022年2月24号)</title>
+    <script src="https://cdn.jsdelivr.net/npm/eruda@2.4.1/eruda.min.js"></script>
+</head>
+<body>
+    <script>
+         eruda.init();
+        // 参考如下文章：https://course.51qux.com/2151.html#top
+        window.onload = function(){
+            console.log(navigator.platfom)
+            console.log(navigator.appVersion)
+            navigator.getBattery().then((batteryInfo)=>{
+                console.dir(batteryInfo)
+            })
+            if('getBattery' in navigator){
+                navigator.getBattery().then((battery)=>{
+                    // 判断充电状态
+                    if(battery.charging){
+                        console.log('充电中')
+                    }else{
+                        console.log('未充电')
+                    }
+
+                    // 判断充电电量
+                    if(battery.level>=1){
+                        console.log('电量100%')
+                    }else if(battery.level>=0.5){
+                        console.log('电量50%')
+                    }else{
+                        console.log('电量少于50%,请充电')
+                    }
+
+                    // 监听电池事件
+                    battery.addEventListener('chargingchange',()=>{
+                        alert(`充电状态改变：${battery.charging? '开始充电':'不充电了'}`)
+                    })
+                })
+            }else{
+                console.log('您的浏览器不支持电池API状态')
+            }
+        }
+        // 目标自己运营一个前端知识网站
+    </script>
+</body>
+</html>

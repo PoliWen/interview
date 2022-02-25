@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日一道前端面试题之如何将一个数组往上移一格，往下移一格</title>
+</head>
+<body>
+    <script>
+        Array.prototype.toRight = function(){
+            return this.map((_,index)=>index === 0? this[this.length-1] : this[index-1])
+        }
+        Array.prototype.toLeft = function(){
+            return this.map((_,index)=>index === this.length-1? this[0] : this[index+1])
+        }
+        function toRight([first,...rest]){
+            return [...rest,first]
+        }
+        function toLeft(arr){
+            return [arr.pop(),...arr]
+        }
+        console.log(toLeft([1,2,3,4,5]))
+        console.log(toRight([1,2,3,4,5]))
+        console.log([1,2,3,4,5].toRight())
+        console.log([1,2,3,4,5].toLeft())
+    </script>
+    
+</body>
+</html>
