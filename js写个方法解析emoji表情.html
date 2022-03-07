@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日一道前端面试题之使用js写一个方法解析emoji表情</title>
+    <!--使用python解析emoji表情 https://segmentfault.com/a/1190000007594620 -->
+    <!-- https://www.ruanyifeng.com/blog/2017/04/emoji.html -->
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+</head>
+<body>
+    <script>
+        const emojiUnicode = ['😀', '😃','😇','🙂','🙃']
+        const emojiCodePoint = [128512,128515,128519,128578,128579]
+        for(let i=0;i<emojiUnicode.length;i++){
+            console.log(String.fromCharCode(emojiCodePoint[i]))
+        }
+    </script>
+    <i class="em em-apple"></i>
+    <p></p>
+    <p></p>
+</body>
+</html>
